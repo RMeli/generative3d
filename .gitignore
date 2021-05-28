@@ -1,0 +1,21 @@
+# archives
+*.zip
+*.gz
+
+# weights
+weights/
+
+# output
+generated/
+plots/
+*.dx
+*.latent
+
+# macOS
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Containers
+*.sif
