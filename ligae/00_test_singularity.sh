@@ -1,20 +1,16 @@
 #!/bin/bash
 
-CONTAINER="/site/tl/home/lcolliandre/work/AI/3d-cnn/gnina/containers/Singularity/gnina.sif"
-export LIGAN_ROOT="/site/tl/home/lcolliandre/work/AI/3d-cnn/ligan"
+CONTAINER="${HOME}/Documents/git/generative3d/dev/singularity/ligan.sif"
+LIGAN_ROOT="${HOME}/Documents/git/ligan"
 
 ROOT=${PWD}
-OUTDIR="/site/tl/home/lcolliandre/work/AI/3d-cnn/generated-results/"
-SITE="/site/"
+OUTDIR="${ROOT}/generated"
 
 mkdir -p ${OUTDIR}
 
-OUTFILE=${OUTDIR}test.out
-
 git -C ${LIGAN_ROOT} log | head -n 1 | 2>&1 tee ${OUTFILE}
-#git --exec-path=${LIGAN_ROOT} log | head -n 1 | 2>&1 tee ${OUTFILE}
 
-singularity run --nv -B ${SITE}:${SITE} --app python ${CONTAINER} \
+singularity run --nv --app python ${CONTAINER} \
     ${LIGAN_ROOT}/generate.py \
     --data_model_file ${ROOT}/models/data_48_0.5-nomolcache.model \
     --gen_model_file ${ROOT}/models/ae.model \
@@ -22,10 +18,11 @@ singularity run --nv -B ${SITE}:${SITE} --app python ${CONTAINER} \
     --data_file ${ROOT}/data/gentest.types \
     --data_root ${ROOT}/data/ \
     -o ${OUTDIR} \
-    --out_prefix ${OUTDIR}test \
+    --out_prefix ${OUTDIR}/test \
     -b lig -b lig_gen \
+    --n_samples 1 \
     --fit_atoms \
     --dkoes_simple_fit --dkoes_make_mol \
     --output_sdf \
     --gpu \
-    2>&1 | tee -a ${OUTFILE}
+    2>&1 | tee -a ${OUTDIR}/test.out
