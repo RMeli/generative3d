@@ -2,6 +2,10 @@
 *.zip
 *.gz
 
+# containers
+*.sif
+*.deb
+
 # weights
 weights/
 
