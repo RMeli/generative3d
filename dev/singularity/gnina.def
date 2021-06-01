@@ -107,7 +107,7 @@ From: ubuntu:18.04
     cd "${ROOTDIR}/libmolgrid"
     mkdir build
     cd build
-    cmake -DCMAKE_CUDA_ARCHITECTURES="70" ..
+    cmake ..
     make -j $(nproc)
     make install
 
@@ -117,7 +117,7 @@ From: ubuntu:18.04
     cd "${ROOTDIR}/gnina"
     mkdir build
     cd build
-    cmake -DBUILD_docs=OFF -DCUDA_ARCH_NAME=Volta ..
+    cmake -DBUILD_docs=OFF -DCUDA_ARCH_NAME=All ..
     make -j $(nproc)
     make install
 

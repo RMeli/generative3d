@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONTAINER="${HOME}/Documents/git/generative3d/dev/singularity/ligan.sif"
+CONTAINER="${HOME}/Documents/git/generative3d/dev/singularity/gnina.sif"
 LIGAN_ROOT="${HOME}/Documents/git/ligan"
 
 ROOT=${PWD}
