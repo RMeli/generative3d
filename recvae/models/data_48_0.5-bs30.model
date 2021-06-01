@@ -19,8 +19,8 @@ layer {
     random_translate: 2.0
     has_affinity: true
     use_covalent_radius: false
-    ligmap: "/gen3d/data/lig_map"
-    recmap: "/gen3d/data/rec_map"
+    ligmap: "data/lig_map"
+    recmap: "data/rec_map"
   }
 }
 layer {
@@ -44,8 +44,8 @@ layer {
     random_translate: 0.0
     has_affinity: true
     use_covalent_radius: false
-    ligmap: "/gen3d/data/lig_map"
-    recmap: "/gen3d/data/rec_map"
+    ligmap: "data/lig_map"
+    recmap: "data/rec_map"
   }
 }
 layer {
