@@ -38,7 +38,7 @@ From: ubuntu:18.04
     ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
     apt install -y wget gnupg software-properties-common tzdata git libboost-all-dev libeigen3-dev \
     libgoogle-glog-dev libprotobuf-dev protobuf-compiler libhdf5-dev libatlas-base-dev libsqlite3-dev sqlite3 python3-dev python3-pip \
-    libfreetype6-dev swig apt-transport-https ca-certificates
+    libfreetype6-dev swig apt-transport-https ca-certificates graphviz
 
     # Install the latest cmake version because gnina requires cmake >= 3.12 but Ubuntu 18.04 ships cmake 3.10.2
     echo "INFO:    Installing cmake 3.20"
@@ -77,6 +77,7 @@ From: ubuntu:18.04
     pip install torch torchvision torchaudio
     pip install GPUtil
     pip install seaborn scikit-image parse protobuf
+    pip install pydot
 
     # Install version RDKit
     echo "INFO:    Installing RDKIT 2021_03_1"
