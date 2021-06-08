@@ -18,6 +18,9 @@ plots/
 # macOS
 .DS_Store
 
+# Python
+__pycache__
+
 # Jupyter
 .ipynb_checkpoints/
 
