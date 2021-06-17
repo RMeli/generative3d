@@ -20,8 +20,8 @@ layer {
     radius_multiple: 1.5
     has_affinity: true
     use_covalent_radius: false
-    recmap: "/gen3d/data/rec_map"
-    ligmap: "/gen3d/data/lig_map"
+    recmap: "data/rec_map"
+    ligmap: "data/lig_map"
     cache_structs: false
   }
 }
@@ -47,8 +47,8 @@ layer {
     radius_multiple: 1.5
     has_affinity: true
     use_covalent_radius: false
-    recmap: "/gen3d/data/rec_map"
-    ligmap: "/gen3d/data/lig_map"
+    recmap: "data/rec_map"
+    ligmap: "data/lig_map"
     cache_structs: false
   }
 }
