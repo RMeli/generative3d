@@ -1,17 +1,22 @@
-# 1/usr/bin/env python
-
-import sys
 from rdkit import Chem
 from rdkit.Chem import AllChem
+from rdkit.Chem.MolStandardize import rdMolStandardize
 import pandas as pd
 
+def mol_standardize(mol):
+    mol = rdMolStandardize.FragmentParent(mol)
+    mol = rdMolStandardize.Normalize(mol)
+    return mol
 
 class SillyWalks:
-    def __init__(self, df):
+    def __init__(self, df, standardize=False):
+        self.standardize = mol_standardize if standardize else lambda mol: mol
+        
         self.count_dict = {}
         for smi in df.SMILES:
             mol = Chem.MolFromSmiles(smi)
             if mol:
+                mol = self.standardize(mol)
                 fp = AllChem.GetMorganFingerprint(mol, 2)
                 for k, v in fp.GetNonzeroElements().items():
                     self.count_dict[k] = self.count_dict.get(k, 0) + v
@@ -19,6 +24,7 @@ class SillyWalks:
     def score(self, smiles_in):
         mol = Chem.MolFromSmiles(smiles_in)
         if mol:
+            mol = self.standardize(mol)
             fp = AllChem.GetMorganFingerprint(mol, 2)
             on_bits = fp.GetNonzeroElements().keys()
             silly_bits = [
@@ -50,6 +56,11 @@ if __name__ == "__main__":
         action="store_true",
         help="Output only SMILES and sillyness score",
     )
+    parser.add_argument(
+        "--standardize",
+        action="store_true",
+        help="Standardize molecule (ParentFragment, Normalize)",
+    )
     parser.add_argument("-o", "--out", default="silly.csv", type=str, help="Output")
 
     args = parser.parse_args()
@@ -59,7 +70,7 @@ if __name__ == "__main__":
         args.reference, sep=" ", names=["SMILES", "Name"]
     )  # TODO: Generalize?
 
-    silly_walks = SillyWalks(df_ref)
+    silly_walks = SillyWalks(df_ref, args.standardize)
 
     df["silly"] = df[args.smiles_col].apply(silly_walks.score)
     df.sort_values("silly", ascending=False, inplace=True)
