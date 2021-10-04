@@ -20,7 +20,9 @@ class SillyWalks:
         if mol:
             fp = AllChem.GetMorganFingerprint(mol, 2)
             on_bits = fp.GetNonzeroElements().keys()
-            silly_bits = [x for x in [self.count_dict.get(x) for x in on_bits] if x is None]
+            silly_bits = [
+                x for x in [self.count_dict.get(x) for x in on_bits] if x is None
+            ]
             score = len(silly_bits) / len(on_bits)
         else:
             score = 1
@@ -31,6 +33,6 @@ if __name__ == "__main__":
     infile_name = sys.argv[1]
     df = pd.read_csv(infile_name)
     silly_walks = SillyWalks("chembl_drugs.smi")
-    df['silly'] = df.SMILES.apply(silly_walks.score)
-    df.sort_values('silly', ascending=False, inplace=True)
+    df["silly"] = df.SMILES.apply(silly_walks.score)
+    df.sort_values("silly", ascending=False, inplace=True)
     print(df.head())

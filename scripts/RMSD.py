@@ -53,16 +53,16 @@ for i, (mol1, mol2) in enumerate(zip(Smols1, Smols2)):
     if n1 != n2:
         # Allow off-by-one problems
         if int(n1) < int(n2):
-            while int(n1) != int (n2):
-               mol1 = next(Smols1)
-               n1 = mol1.GetProp("_Name")
-            #assert mol1.GetProp("_Name") == n2
+            while int(n1) != int(n2):
+                mol1 = next(Smols1)
+                n1 = mol1.GetProp("_Name")
+            # assert mol1.GetProp("_Name") == n2
         elif int(n2) < int(n1):
-           while int(n2) != int(n1):
-               mol2 = next(Smols2)
-               n2 = mol2.GetProp("_Name")
+            while int(n2) != int(n1):
+                mol2 = next(Smols2)
+                n2 = mol2.GetProp("_Name")
         else:
-           raise RuntimeError(f"Different names {n1} and {n2}...")
+            raise RuntimeError(f"Different names {n1} and {n2}...")
 
     assert n1 == n2
 

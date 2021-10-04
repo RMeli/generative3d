@@ -14,12 +14,12 @@ def ligan(
     name,
     prefix,
     blob="lig_gen",
-# BRD4 on Linux system
-#    path="../data/BRD4/sdf/",
-# CDK2 through Windows system
+    # BRD4 on Linux system
+    #    path="../data/BRD4/sdf/",
+    # CDK2 through Windows system
     path="..\\data\\CDK2\\data\\",
     genpath="..\\..\\generated-results\\",
-#    recpath="../data/BRD4/pdb/BRD4.pdb",
+    #    recpath="../data/BRD4/pdb/BRD4.pdb",
     recpath="..\\data\\CDK2\\data\\3SW4.pdb",
     nsamples=10,
 ):
