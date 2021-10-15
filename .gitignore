@@ -16,6 +16,10 @@ plots/
 *.latent
 *nohup*
 
+# tests
+tests/data
+tests/models
+
 # macOS
 .DS_Store
 
