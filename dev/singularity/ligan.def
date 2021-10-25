@@ -1,8 +1,6 @@
 Bootstrap: docker
 From: nvidia/cuda:10.2-cudnn7-devel-ubuntu18.04
 
-%files
-
 %environment
     export LC_ALL=C.UTF-8
     export LD_LIBRARY_PATH="/lib:/lib64:/usr/lib:/usr/local/lib:${LD_LIBRARY_PATH}"
@@ -10,7 +8,7 @@ From: nvidia/cuda:10.2-cudnn7-devel-ubuntu18.04
     export RDBASE="/opt/rdkit"
 %post
     export GNINA_VERSION="v1.0.1"
-    export LIBMOLGRID_VERSION="v0.2.1"
+    export LIBMOLGRID_VERSION="v0.5.1"
 
     # Build variables
     export ROOTDIR=/opt
@@ -27,7 +25,8 @@ From: nvidia/cuda:10.2-cudnn7-devel-ubuntu18.04
 
     apt install -y wget gnupg software-properties-common tzdata git libboost-all-dev libeigen3-dev \
     libgoogle-glog-dev libprotobuf-dev protobuf-compiler libhdf5-dev libatlas-base-dev libsqlite3-dev sqlite3 python3-dev python3-pip \
-    libfreetype6-dev swig apt-transport-https ca-certificates graphviz
+    libfreetype6-dev swig apt-transport-https ca-certificates graphviz \
+    mesa-utils and libgl1-mesa-glx
  
     wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
     apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
@@ -37,11 +36,15 @@ From: nvidia/cuda:10.2-cudnn7-devel-ubuntu18.04
     update-alternatives --install /usr/bin/python python /usr/bin/python3 1
     update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 1
 
-    pip install numpy pandas pytest scipy
-    pip install torch torchvision torchaudio
-    pip install GPUtil
-    pip install seaborn scikit-image parse protobuf
-    pip install pydot
+    python -m pip install -U pip
+    python -m pip install -U numpy pandas pytest scipy
+    python -m pip install -U torch torchvision torchaudio
+    python -m pip install -U GPUtil psutil pynvml
+    python -m pip install -U matplotlib seaborn scikit-image 
+    python -m pip install -U parse protobuf
+    python -m pip install -U open3d pydot py3dmol pydot
+    python -m pip install -U black flake8
+    python -m pip install -U jupyter tqdm
 
     git clone -b Release_2021_03_1 --depth=1 https://github.com/rdkit/rdkit.git "${ROOTDIR}/rdkit"
     cd "${ROOTDIR}/rdkit"
@@ -107,4 +110,7 @@ From: nvidia/cuda:10.2-cudnn7-devel-ubuntu18.04
 %apphelp python
     Run Python
 
+%help
+    liGAN container (unofficial): https://github.com/mattragoza/liGAN
 
+    Based on definition file originally written by Sebastien Buchoux (@seb-buch).
