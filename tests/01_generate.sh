@@ -21,8 +21,8 @@ singularity run --nv --app python ${CONTAINER} \
     --data_file ${ROOT}/data/gentest.types \
     --data_root ${ROOT}/data/ \
     --out_prefix ${OUTDIR}/${PREFIX} \
-    --verbose 1 \
-    --n_samples 1 \
+    --verbose 0 \
+    --n_samples 5 \
     --var_factor 1.0 \
     -b lig -b lig_gen \
     --fit_atoms \
