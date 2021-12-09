@@ -9,7 +9,7 @@ OUTDIR="${ROOT}/generated"
 mkdir -p ${OUTDIR}
 
 SYSTEM="CDK2"
-PREFIX="${SYSTEM}_vf1.0_scffold"
+PREFIX="${SYSTEM}_vf1.0_scaffold"
 
 OUTFILE=${OUTDIR}/${PREFIX}.out
 git -C ${LIGAN_ROOT} log | head -n 1 | 2>&1 tee ${OUTFILE}
