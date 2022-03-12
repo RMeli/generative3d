@@ -11,7 +11,7 @@ mkdir -p ${OUTDIR}
 for system in "BRD4" "CDK2"
 do
 
-    for vf in 1.0 5.0
+    for vf in 1.0
     do
 
     PREFIX="${system}_vf${vf}_prior"
@@ -35,7 +35,7 @@ do
         --dkoes_simple_fit --dkoes_make_mol \
         --output_sdf \
         --gpu \
-        --prior --gen_only \
+        --prior \
         2>&1 | tee -a ${OUTFILE}
 
     mv bad* ${OUTDIR}

@@ -132,3 +132,11 @@ Molecular caches (`.molcache` or `.molcache2`) are monolithic files collecting t
 The `.molcache2` files referenced in the `.model` files can be obtained from [http://bits.csb.pitt.edu/files/molcaches/](http://bits.csb.pitt.edu/files/molcaches/).
 
 Given that we are testing our own systems, the `.molcache2` are removed from the `.model` files. The files `*-nomolcache.model` are custom version of the original models which do not require `.molcache2` inputs.
+
+
+## Notes
+
+Most scripts can be executed with `bash` and call `singularity` internally. For MSO-related scripts, however, the `mso` Python package needs to be installed within the Singularity container, therefore the scripts need to run as
+```bash
+singularity run --nv <CONTAINER> ./<SCRIPT>
+```
