@@ -43,7 +43,7 @@ do
         #echo $line
         rec=$(echo $line | cut -f3 -d " ")
         lig=$(echo $line | cut -f4 -d " ")
-          lig=$(basename ${lig} .sdf)
+        lig=$(basename ${lig} .sdf)
 
             
         ligfile="${OUTDIR}${PREFIX}_${lig}_lig_gen_fit_uff.sdf.gz"

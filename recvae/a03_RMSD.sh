@@ -37,7 +37,7 @@ do
 
     while read line
     do
-        #echo $line
+        echo $line
         lig=$(echo $line | cut -f4 -d " ")
         lig=$(basename ${lig} .sdf)
 
