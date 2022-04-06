@@ -10,8 +10,7 @@ import pandas as pd
 from collections import defaultdict
 
 import argparse as ap
-import sys
-import os
+import gzip
 
 parser = ap.ArgumentParser(description="Extract GNINA results from SDF file")
 
@@ -20,6 +19,11 @@ parser.add_argument("-o", "--output", default=None, type=str, help="Output CSV f
 args = parser.parse_args()
 
 Smols = Chem.SDMolSupplier(args.mols)
+if args.mols.endswith(".gz"):
+    mols = gzip.open(args.mols)
+    Smols = Chem.ForwardSDMolSupplier(mols)
+else:
+    Smols = Chem.SDMolSupplier(args.mols)
 
 data = defaultdict(list)
 
