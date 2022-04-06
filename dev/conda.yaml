@@ -1,0 +1,19 @@
+name: ligan
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pip
+  - ipython
+
+  - numpy
+  - scipy
+  - pandas
+
+  - matplotlib
+  - seaborn
+
+  - rdkit
+  - openbabel
+
+  - spyrmsd
