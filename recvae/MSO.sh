@@ -1,9 +1,9 @@
 #!/bin/bash
 
 SYSTEM="BRD4"
-NSWARMS=1
-NPARTICLES=5
-NSTEPS=5
+NSWARMS=5
+NPARTICLES=100
+NSTEPS=25
 XLIM=3
 VLIM=3
 SF="cnn" # Scoring function
@@ -30,7 +30,7 @@ fi
 
 # Output
 OUTDIR="${ROOT}/generated"
-PREFIX="${OUTDIR}/${SYSTEM}_mso_qed_sa_${SF}_xlim${XLIM}_vlim${VLIM}"
+PREFIX="${OUTDIR}/${SYSTEM}_mso_${SF}_ns${NSWARMS}_np${NPARTICLES}_it${NSTEPS}_xlim${XLIM}_vlim${VLIM}"
 OUTFILE="${PREFIX}.out"
 
 LIGAN_ROOT="${HOME}/Documents/git/ligan"
@@ -43,11 +43,11 @@ git -C ${LIGAN_ROOT} log | head -n 1 | 2>&1 tee ${OUTFILE}
 pip install ${LIGAN_ROOT}/mso-code
 
 #singularity run --nv --app python ${CONTAINER} \
-  python ${LIGAN_ROOT}/MSO.py \
+time python ${LIGAN_ROOT}/MSO.py \
   --data_model_file ${ROOT}/models/data_48_0.5_batch10.model \
   --gen_model_file ${ROOT}/models/_vlr-le13_48_0.5_4_3lS_32_2_512_e.model \
   --gen_weights_file ${ROOT}/weights/lessskip_crossdocked_increased_1.lowrmsd.0_gen_iter_1000000.caffemodel \
-  -r ${RECEPTOR} -l ${ROOT}/data/benzene_brd4.sdf \
+  -r ${RECEPTOR} -l ${ROOT}/data/methyl_brd4.sdf \
   --n_swarms ${NSWARMS} --n_particles ${NPARTICLES} --iterations ${NSTEPS} \
   --v_min -${VLIM} --v_max ${VLIM} \
   --scores qed sa ${SF} \
@@ -74,3 +74,5 @@ gnina \
   --cnn_scoring ${CNNSCORE} \
   -o ${PREFIX}_GNINA_history.sdf \
   2>&1 | tee -a ${PREFIX}_GNINA_history.out
+
+mv ${ROOT}/bad*.sdf ${ROOT}/bad*.pkl ${OUTDIR}
