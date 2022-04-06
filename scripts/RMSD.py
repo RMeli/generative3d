@@ -6,7 +6,7 @@ The files are iterated together and molecules need to have the same name.
 
 from rdkit import Chem
 
-from spyrmsd import spyrmsd
+from spyrmsd import rmsd as srmsd
 from spyrmsd.optional import rdkit as rd
 
 import pandas as pd
@@ -14,8 +14,8 @@ import pandas as pd
 from collections import defaultdict
 
 import argparse as ap
-import sys
 import os
+import gzip
 
 parser = ap.ArgumentParser(
     description="Element-wise RMSD calculations between molecules in two SDF files."
@@ -30,8 +30,16 @@ args = parser.parse_args()
 mols1 = args.mols1
 mols2 = args.mols2
 
-Smols1 = Chem.SDMolSupplier(mols1)
-Smols2 = Chem.SDMolSupplier(mols2)
+def mol_supplier(mols):
+    if mols.endswith(".gz"):
+        mols = gzip.open(mols)
+        S = Chem.ForwardSDMolSupplier(mols)
+    else:
+        S = Chem.SDMolSupplier(mols)
+    return S
+
+Smols1 = mol_supplier(mols1)
+Smols2 = mol_supplier(mols2)
 
 data = defaultdict(list)
 
@@ -70,7 +78,7 @@ for i, (mol1, mol2) in enumerate(zip(Smols1, Smols2)):
     m2 = rd.to_molecule(mol2)
 
     try:
-        rmsd = spyrmsd.rmsdwrapper(m1, [m2], strip=True, minimize=args.minimize)
+        rmsd = srmsd.rmsdwrapper(m1, [m2], strip=True, minimize=args.minimize)
     except Exception as e:
         print(f"ERROR: Failed to computed RMSD between {n1} and {n2}.", e)
 
