@@ -27,7 +27,7 @@ mkdir -p ${OUTDIR}
 
 # Obtain Vina-minimised poses for sampling with scaffold
 #   Variablility factor: 1.0 (only)
-for SYSTEM in "CDK2" #BRD4
+for SYSTEM in "BRD4" #"CDK2"
 do
     datafile="${ROOT}/data/${SYSTEM}rec.types"
 

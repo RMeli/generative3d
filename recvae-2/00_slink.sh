@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ln -s ../ligvae/data data
+ln -s ../data data

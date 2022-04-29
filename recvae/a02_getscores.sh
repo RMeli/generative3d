@@ -26,7 +26,7 @@ mkdir -p ${OUTDIR}
 
 # Obtain Vina-minimised scores for sampling with scaffold
 #   Variablility factor: 1.0 (only)
-for SYSTEM in "CDK2" #"BRD4"
+for SYSTEM in "BRD4"
 do
     datafile="${ROOT}/data/${SYSTEM}rec.types"
 
