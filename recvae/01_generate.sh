@@ -8,11 +8,11 @@ OUTDIR="${ROOT}/generated"
 
 mkdir -p ${OUTDIR}
 
-for SYSTEM in "BRD4" "CDK2"
+for SYSTEM in "CDK2"
 do
-    for vf in 1.0 5.0
+    for vf in 1.0
     do
-        PREFIX="${SYSTEM}_vf1.0"
+        PREFIX="${SYSTEM}_vf${vf}"
 
         OUTFILE=${OUTDIR}/${PREFIX}.out
         git -C ${LIGAN_ROOT} log | head -n 1 | 2>&1 tee ${OUTFILE}
