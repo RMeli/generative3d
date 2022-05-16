@@ -8,7 +8,7 @@ OUTDIR="${ROOT}/generated"
 
 mkdir -p ${OUTDIR}
 
-SYSTEM="BRD4"
+SYSTEM="CDK2"
 PREFIX="${SYSTEM}_vf1.0_scaffold"
 
 OUTFILE=${OUTDIR}/${PREFIX}.out
