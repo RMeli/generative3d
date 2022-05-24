@@ -14,7 +14,7 @@ for SYSTEM in "CDK2"
 do
     datafile="data/${SYSTEM}rec.types"
 
-    for vf in 1.0
+    for vf in 5.0
     do
         PREFIX="${SYSTEM}_vf${vf}"
 

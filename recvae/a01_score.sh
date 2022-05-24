@@ -14,7 +14,7 @@ mkdir -p ${OUTDIR}
 #   Variablility factor: 1.0 (only)
 for SYSTEM in "CDK2"
 do
-    for vf in 1.0
+    for vf in 5.0
     do
         datafile="${ROOT}/data/${SYSTEM}rec.types"
 
