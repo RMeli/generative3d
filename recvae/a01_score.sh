@@ -10,11 +10,10 @@ OUTDIR=${ROOT}/generated/
 mkdir -p ${OUTDIR}
 
 
-# Obtain Vina-minimised poses for prior sampling
-#   Variablility factor: 1.0 (only)
+# Obtain Vina-minimised poses for posterior sampling
 for SYSTEM in "CDK2"
 do
-    for vf in 5.0
+    for vf in 1.0 5.0
     do
         datafile="${ROOT}/data/${SYSTEM}rec.types"
 
