@@ -34,12 +34,14 @@ def ligan(
     cmd.load(genpath + prefix + f"_{name}_{blob}_fit.sdf", f"ATOMS-{blob}")
     cmd.load(genpath + prefix + f"_{name}_{blob}_fit_add.sdf", f"BONDS-{blob}")
     cmd.load(genpath + prefix + f"_{name}_{blob}_fit_uff.sdf", f"UFF-{blob}")
+    cmd.load(genpath + prefix + f"_{name}_{blob}_vina.sdf", f"VINA-{blob}")
+
 
     # Load receptor
     cmd.load(recpath, "rec")
 
     # Translate to origin
-    for o in ["SEED", "ATOMS", "BONDS", "UFF", "rec"]:
+    for o in ["SEED", "ATOMS", "BONDS", "UFF", "VINA", "rec"]:
         cmd.translate(list(-c), o, state=0, camera=0)
 
     cmd.show("sphere", "ATOMS")
