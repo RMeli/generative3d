@@ -8,9 +8,9 @@ OUTDIR="${ROOT}/generated"
 
 mkdir -p ${OUTDIR}
 
-for SYSTEM in "CDK2"
+for SYSTEM in "BRD4"
 do
-    for vf in 5.0
+    for vf in 1.0
     do
         PREFIX="${SYSTEM}_vf${vf}"
 
