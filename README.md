@@ -4,12 +4,8 @@ Generative models for 3D structures. Based on [liGAN](https://github.com/mattrag
 
 In order to run the scripts contained in this repository, two additional repositories are needed:
 
-* [di-gitlab/abingdon/computational-chemistry/ligan](https://di-gitlab/abingdon/computational-chemistry/ligan)
-  * Switch to branch `master-evotec` for generative modelling, prior sampling and interpolation
-  * Switch to branch `latent-evotec` for the experimental MSO/liGAN interface
-* [di-gitlab/abingdon/computational-chemistry/gnina](https://di-gitlab/abingdon/computational-chemistry/gnina)
-  * Pre-built Singularity container in `containers/Singularity/`
-  * Dockerfile to build Docker container in `containers/Docker/` 
+* [liGAN](https://github.com/mattragoza/liGAN)
+* [GNINA](https://github.com/gnina/gnina)
 
 This README file provides a general overview of the repository and associated containers, code and files. Instructions on how to run liGAN in a container are provided in `ligae/README` while instructions on how to use liGAN generative models are provided in `ligvae/README` and `recvae/README`.
 
@@ -34,20 +30,6 @@ Given the complex dependencies, [Docker](https://www.docker.com/) and [Singulari
 * Originally, only the Docker container was available, therefore the scripts in `ligvae` and `recvae` are tailored to run within the Docker container. `ligae` contains both example scripts for Docker and Singularity.
 * [liGAN](https://github.com/mattragoza/liGAN) use [Caffe](https://caffe.berkeleyvision.org/) as main deep learning backend. Some parts requiring automatic differentiation (such as fitting atoms to a generated density) are implemented in PyTorch, but the generative models are implemented in Caffe. 
 * Caffe is [discontinued (maintenance-only)](https://github.com/BVLC/caffe/releases/tag/1.0). A PyTorch refactoring of `liGAN` is currently underway in the [`refactor` branch](https://github.com/mattragoza/liGAN/tree/refactor).
-
-### Docker
-
-The `Dockerfile` to build a Docker container with all [liGAN](https://github.com/mattragoza/liGAN) requirements pre-installed is available at [di-gitlab/abingdon/computational-chemistry/gnina](https://di-gitlab/abingdon/computational-chemistry/gnina).
-
-Scripts to run within the container need to be executable:
-```
-chmod a+x <SCRIPT>
-```
-
-### Singularity
-
-The `*.def` file to build a Singularity container (and the container itself) with all [liGAN](https://github.com/mattragoza/liGAN) requirements pre-installed is available at [di-gitlab/abingdon/computational-chemistry/gnina](https://di-gitlab/abingdon/computational-chemistry/gnina).
-
 ## GNINA Legacy
 
 [liGAN](https://github.com/mattragoza/liGAN) uses [GNINA](https://github.com/gnina/gnina)'s fork of Caffe as main deep learning backend and [libmolgrid](https://github.com/gnina/libmolgrid), therefore some files and definitions come from [GNINA](https://github.com/gnina/gnina)'s legacy.

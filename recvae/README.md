@@ -108,8 +108,6 @@ _Note_: the maximum batch size that can be propagated is different from `ligvae`
 
 ### Molecular Swarm Optimisation
 
-The [Molecular Swarm Optimiser (MSO)](https://github.com/jrwnter/mso) has been adapted and incorporated into `liGAN` (on the `evotec-latent` branch) and can be run via the `MSO.py` script, used in `07_MSO_<SYSTEM>.sh`.
-
 ```bash
 python ${LIGAN_ROOT}/MSO.py \
   --data_model_file ${ROOT}/models/data_48_0.5_batch10.model \

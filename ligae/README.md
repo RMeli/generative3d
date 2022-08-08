@@ -4,8 +4,6 @@ The ligand autoencoder model is not very interesting in itself, because of the d
 
 ## Docker
 
-A Dockerfile to build the Docker container needed to run liGAN is available at [di-gitlab/abingdon/computational-chemistry/gnina/containers/Docker](https://di-gitlab/abingdon/computational-chemistry/gnina/-/tree/master/containers/Docker).
-
 The script `test.sh` runs the `00_test_docker.sh` script within a Docker container:
 ```bash
 #!/bin/bash
