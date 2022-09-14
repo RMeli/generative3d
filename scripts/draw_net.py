@@ -13,8 +13,7 @@ from caffe.proto import caffe_pb2
 
 
 def parse_args():
-    """Parse input arguments
-    """
+    """Parse input arguments"""
 
     parser = ArgumentParser(
         description=__doc__, formatter_class=ArgumentDefaultsHelpFormatter

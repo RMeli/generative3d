@@ -15,12 +15,13 @@ def ligan(
     prefix,
     blob="lig_gen",
     # BRD4 on Linux system
-    #    path="../data/BRD4/sdf/",
+    path="../data/BRD4/sdf/",
     # CDK2 through Windows system
-    path="..\\data\\CDK2\\data\\",
-    genpath="..\\..\\generated-results\\",
-    #    recpath="../data/BRD4/pdb/BRD4.pdb",
-    recpath="..\\data\\CDK2\\data\\3SW4.pdb",
+    # path="..\\data\\CDK2\\data\\",
+    # genpath="..\\..\\generated-results\\",
+    genpath="generated-small/",
+    recpath="../data/BRD4/pdb/BRD4.pdb",
+    # recpath="..\\data\\CDK2\\data\\3SW4.pdb",
     nsamples=10,
 ):
     cmd.reinitialize("everything")
@@ -31,11 +32,10 @@ def ligan(
     c = np.mean(np.array(xyz), axis=0)
 
     # Load SDF files
-    cmd.load(genpath + prefix + f"_{name}_{blob}_fit.sdf", f"ATOMS-{blob}")
-    cmd.load(genpath + prefix + f"_{name}_{blob}_fit_add.sdf", f"BONDS-{blob}")
-    cmd.load(genpath + prefix + f"_{name}_{blob}_fit_uff.sdf", f"UFF-{blob}")
-    cmd.load(genpath + prefix + f"_{name}_{blob}_vina.sdf", f"VINA-{blob}")
-
+    cmd.load(genpath + prefix + f"_{name}_{blob}_fit.sdf.gz", f"ATOMS-{blob}")
+    cmd.load(genpath + prefix + f"_{name}_{blob}_fit_add.sdf.gz", f"BONDS-{blob}")
+    cmd.load(genpath + prefix + f"_{name}_{blob}_fit_uff.sdf.gz", f"UFF-{blob}")
+    cmd.load(genpath + prefix + f"_{name}_{blob}_vina.sdf.gz", f"VINA-{blob}")
 
     # Load receptor
     cmd.load(recpath, "rec")
@@ -70,5 +70,3 @@ def ligan(
 
 
 cmd.extend("ligan", ligan)
-
-# vi:expandtab

@@ -3,15 +3,17 @@ from rdkit.Chem import AllChem
 from rdkit.Chem.MolStandardize import rdMolStandardize
 import pandas as pd
 
+
 def mol_standardize(mol):
     mol = rdMolStandardize.FragmentParent(mol)
     mol = rdMolStandardize.Normalize(mol)
     return mol
 
+
 class SillyWalks:
     def __init__(self, df, standardize=False):
         self.standardize = mol_standardize if standardize else lambda mol: mol
-        
+
         self.count_dict = {}
         for smi in df.SMILES:
             mol = Chem.MolFromSmiles(smi)

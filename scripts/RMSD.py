@@ -30,6 +30,7 @@ args = parser.parse_args()
 mols1 = args.mols1
 mols2 = args.mols2
 
+
 def mol_supplier(mols):
     if mols.endswith(".gz"):
         mols = gzip.open(mols)
@@ -37,6 +38,7 @@ def mol_supplier(mols):
     else:
         S = Chem.SDMolSupplier(mols)
     return S
+
 
 Smols1 = mol_supplier(mols1)
 Smols2 = mol_supplier(mols2)
